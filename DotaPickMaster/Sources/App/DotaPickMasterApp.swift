@@ -11,7 +11,7 @@ import SwiftUI
 struct DotaPickMasterApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HeroSelectionView(viewModel: .init())
         }
     }
 }

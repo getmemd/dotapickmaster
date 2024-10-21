@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C5E7B3EC2CC5D63000831819 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C5E7B3EB2CC5D63000831819 /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		C5EC86282CC57B78009892B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5E7B3EC2CC5D63000831819 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +77,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C5E7B3EA2CC5D63000831819 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C5EC860E2CC57B77009892B8 = {
 			isa = PBXGroup;
 			children = (
 				C5EC86192CC57B77009892B8 /* DotaPickMaster */,
 				C5EC862A2CC57B78009892B8 /* DotaPickMasterTests */,
 				C5EC86342CC57B78009892B8 /* DotaPickMasterUITests */,
+				C5E7B3EA2CC5D63000831819 /* Frameworks */,
 				C5EC86182CC57B77009892B8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +125,7 @@
 			);
 			name = DotaPickMaster;
 			packageProductDependencies = (
+				C5E7B3EB2CC5D63000831819 /* Kingfisher */,
 			);
 			productName = DotaPickMaster;
 			productReference = C5EC86172CC57B77009892B8 /* DotaPickMaster.app */;
@@ -195,6 +209,11 @@
 			);
 			mainGroup = C5EC860E2CC57B77009892B8;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C5EC86802CC57C02009892B8 /* XCRemoteSwiftPackageReference "AlertToast" */,
+				C5EC86812CC57C0F009892B8 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C5EC86942CC5C35F009892B8 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C5EC86182CC57B77009892B8 /* Products */;
 			projectDirPath = "";
@@ -395,7 +414,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DotaPickMaster/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"DotaPickMaster/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 9RSGP9843T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -424,7 +443,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"DotaPickMaster/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"DotaPickMaster/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 9RSGP9843T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -558,6 +577,41 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C5EC86802CC57C02009892B8 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.9;
+			};
+		};
+		C5EC86812CC57C0F009892B8 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.0;
+			};
+		};
+		C5EC86942CC5C35F009892B8 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C5E7B3EB2CC5D63000831819 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5EC86812CC57C0F009892B8 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C5EC860F2CC57B77009892B8 /* Project object */;
 }
