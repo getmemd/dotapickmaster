@@ -9,7 +9,7 @@ import Foundation
 
 struct Hero: Identifiable, Codable {
     enum Constants {
-        static let imageBaseURL = "https://cdn.dota2.com/apps/dota2/images/heroes/"
+        static let imageBaseURL = "https://cdn.cloudflare.steamstatic.com"
     }
     
     enum PrimaryAttr: String, Codable, CaseIterable, Identifiable {
@@ -46,17 +46,26 @@ struct Hero: Identifiable, Codable {
     let localizedName: String
     let primaryAttr: PrimaryAttr
     let roles: [Role]
+    let img: String
+    let pubWin: Int
+    let pubPick: Int
     
     var imageUrl: String {
-        let heroName = name.replacingOccurrences(of: "npc_dota_hero_", with: "")
-        return "\(Constants.imageBaseURL)\(heroName)_lg.png"
+        return "\(Constants.imageBaseURL)\(img)"
     }
     
-    init(data: HeroResponse) {
+    var winRate: Double {
+        Double(pubWin) / Double(pubPick) * 100
+    }
+    
+    init(data: HeroStatsResponse) {
         id = data.id
         name = data.name
         localizedName = data.localizedName
         primaryAttr = .init(rawValue: data.primaryAttr) ?? .strength
         roles = data.roles.compactMap({ .init(rawValue: $0.lowercased()) })
+        img = data.img
+        pubWin = data.pubWin
+        pubPick = data.pubPick
     }
 }

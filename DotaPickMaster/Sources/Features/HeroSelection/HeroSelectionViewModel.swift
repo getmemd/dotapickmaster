@@ -20,4 +20,5 @@ final class HeroPickerViewModel: ObservableObject {
             }
         }
     }
+    
 }

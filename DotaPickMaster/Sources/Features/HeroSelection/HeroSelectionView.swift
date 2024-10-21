@@ -13,6 +13,15 @@ struct HeroSelectionView: View {
     @State private var selectedAttribute: Hero.PrimaryAttr? = nil
     @State private var selectedRoles: Set<Hero.Role> = []
     @State private var searchText: String = ""
+    @State private var sortOption: SortOption = .none
+    
+    enum SortOption: String, CaseIterable, Identifiable {
+        case none = "None"
+        case winRate = "Win Rate"
+        case name = "Name"
+        
+        var id: String { self.rawValue }
+    }
     
     var body: some View {
         VStack {
@@ -61,7 +70,7 @@ struct HeroSelectionView: View {
                     .padding(.horizontal)
                 }
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: 16)], spacing: 16) {
-                    ForEach(filteredHeroes) { hero in
+                    ForEach(sortedHeroes) { hero in
                         VStack {
                             KFImage(URL(string: hero.imageUrl))
                                 .resizable()
@@ -70,10 +79,11 @@ struct HeroSelectionView: View {
                                 .cornerRadius(15)
                                 .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.white, lineWidth: 2))
                                 .shadow(radius: 5)
+                            Text("\(String(format: "%.2f", hero.winRate))%")
+                                .foregroundStyle(hero.winRate >= 50.0 ? Color.green : Color.red)
                             Text(hero.localizedName)
                                 .font(.caption)
-                                .foregroundColor(.primary)
-                                .padding(.top, 4)
+                                .foregroundStyle(Color.primary)
                         }
                     }
                 }
@@ -81,6 +91,17 @@ struct HeroSelectionView: View {
             }
         }
         .navigationTitle("Heroes")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Picker("Sort By", selection: $sortOption) {
+                    ForEach(SortOption.allCases) { option in
+                        Text(option.rawValue).tag(option)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
+                .foregroundColor(.blue)
+            }
+        }
         .background(
             LinearGradient(gradient: Gradient(colors: [Color.purple.opacity(0.1), Color.blue.opacity(0.1)]), startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
@@ -99,7 +120,17 @@ struct HeroSelectionView: View {
             return matchesAttribute && matchesRole && matchesSearchText
         }
     }
-
+    
+    private var sortedHeroes: [Hero] {
+        switch sortOption {
+        case .winRate:
+            return filteredHeroes.sorted { $0.winRate > $1.winRate }
+        case .name:
+            return filteredHeroes.sorted { $0.localizedName < $1.localizedName }
+        case .none:
+            return filteredHeroes
+        }
+    }
 }
 
 #Preview {

@@ -17,7 +17,7 @@ struct Repository {
     }
     
     static func fetchHeroes() async throws -> [Hero] {
-        guard let url = URL(string: "\(baseUrl)heroes") else {
+        guard let url = URL(string: "\(baseUrl)heroStats") else {
             throw NetworkError.invalidURL
         }
         let (data, response) = try await URLSession.shared.data(from: url)
@@ -25,7 +25,7 @@ struct Repository {
             throw NetworkError.requestFailed
         }
         do {
-            let decodedResponse = try JSONDecoder().decode([HeroResponse].self, from: data)
+            let decodedResponse = try JSONDecoder().decode([HeroStatsResponse].self, from: data)
             let heroes: [Hero] = decodedResponse.map { .init(data: $0) }
             return heroes
         } catch {
